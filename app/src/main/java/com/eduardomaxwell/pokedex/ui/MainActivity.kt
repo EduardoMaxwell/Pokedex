@@ -13,7 +13,7 @@ import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModelFactory
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
-    val viewModel by lazy {
+    private val viewModel by lazy {
         ViewModelProvider(this, PokemonViewModelFactory())
             .get(PokemonViewModel::class.java)
     }
