@@ -9,7 +9,6 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eduardomaxwell.pokedex.R
 import com.eduardomaxwell.pokedex.databinding.ActivityMainBinding
 import com.eduardomaxwell.pokedex.databinding.ActivitySplashScreenBinding
-import com.eduardomaxwell.pokedex.domain.Pokemon
 import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModel
 import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModelFactory
 
@@ -32,22 +31,25 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         viewModel.pokemons.observe(this, Observer {
-            it?.let { list ->
-                loadRecyclerView(list)
+            it?.let { pokemons ->
+
+                with(binding.rvPorkemons) {
+                    setHasFixedSize(true)
+                    layoutManager =
+                        StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
+                    adapter = PokemonAdapter(pokemons) { pokemon ->
+                        val intent = PokemonDetailActivity.getStartIntent(
+                            this@MainActivity,
+                            pokemonName = pokemon.name,
+                            imageUri = pokemon.imageURl
+                        )
+                        this@MainActivity.startActivity(intent)
+                    }
+                }
                 binding.progressBar.visibility = View.GONE
             }
         })
     }
 
-    private fun loadRecyclerView(pokemons: List<Pokemon?>) {
-        binding.rvPorkemons.apply {
-            setHasFixedSize(true)
-            layoutManager =
-                StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
-            adapter = PokemonAdapter(pokemons)
-        }
-
-
-    }
 
 }

@@ -9,13 +9,14 @@ import com.eduardomaxwell.pokedex.databinding.PokemonItemBinding
 import com.eduardomaxwell.pokedex.domain.Pokemon
 
 class PokemonAdapter(
-    private val items: List<Pokemon?>
+    private val items: List<Pokemon?>,
+    private val onItemClickListener: ((pokemon: Pokemon) -> Unit)
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val binding = PokemonItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
-        return ViewHolder(binding)
+        return ViewHolder(binding, onItemClickListener)
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -24,7 +25,10 @@ class PokemonAdapter(
 
     override fun getItemCount() = items.size
 
-    class ViewHolder(itemView: PokemonItemBinding?) : RecyclerView.ViewHolder(itemView!!.root) {
+    class ViewHolder(
+        itemView: PokemonItemBinding?,
+        private val onItemClickListener: ((pokemon: Pokemon) -> Unit)
+    ) : RecyclerView.ViewHolder(itemView!!.root) {
 
 
         private val image = itemView?.ivPokemon
@@ -53,6 +57,12 @@ class PokemonAdapter(
                 } else {
                     type2?.visibility = View.GONE
 
+                }
+            }
+
+            itemView.rootView.setOnClickListener {
+                item?.let { pokemon ->
+                    onItemClickListener.invoke(pokemon)
                 }
             }
 
