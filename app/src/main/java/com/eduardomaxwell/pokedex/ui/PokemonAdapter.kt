@@ -9,7 +9,7 @@ import com.eduardomaxwell.pokedex.databinding.PokemonItemBinding
 import com.eduardomaxwell.pokedex.domain.Pokemon
 
 class PokemonAdapter(
-    private val items: List<Pokemon>
+    private val items: List<Pokemon?>
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
 
@@ -24,29 +24,36 @@ class PokemonAdapter(
 
     override fun getItemCount() = items.size
 
-    class ViewHolder(itemView: PokemonItemBinding) : RecyclerView.ViewHolder(itemView.root) {
-        private val image = itemView.ivPokemon
-        private val name = itemView.tvName
-        private val number = itemView.tvNumber
-        private val type = itemView.tvType1
-        private val type2 = itemView.tvType2
+    class ViewHolder(itemView: PokemonItemBinding?) : RecyclerView.ViewHolder(itemView!!.root) {
 
-        fun viewBind(item: Pokemon) {
 
-            Glide.with(itemView.context)
-                .load(item.imageURl)
-                .centerCrop()
-                .into(image)
+        private val image = itemView?.ivPokemon
+        private val name = itemView?.tvName
+        private val number = itemView?.tvNumber
+        private val type = itemView?.tvType1
+        private val type2 = itemView?.tvType2
 
-            name.text = item.name
-            number.text = "Nº ${item.formmatedNumber()}"
-            type.text = item.types[0].name
-            if (item.types.size > 1) {
-                type2.visibility = View.VISIBLE
-                type2.text = item.types[1].name
-            } else {
-                type2.visibility = View.GONE
+        fun viewBind(item: Pokemon?) {
 
+            item?.let {
+
+                if (image != null) {
+                    Glide.with(itemView.context)
+                        .load(item.imageURl)
+                        .centerCrop()
+                        .into(image)
+                }
+
+                name?.text = item.name.capitalize()
+                number?.text = "Nº ${item.formmatedNumber}"
+                type?.text = item.types[0].name.capitalize()
+                if (item.types.size > 1) {
+                    type2?.visibility = View.VISIBLE
+                    type2?.text = item.types[1].name.capitalize()
+                } else {
+                    type2?.visibility = View.GONE
+
+                }
             }
 
         }
