@@ -6,6 +6,7 @@
     <item>
         <bitmap
             android:gravity="center"
-            android:src="@drawable/pokeball_icon" />
+            android:src="@drawable/pokeball_splash" />
     </item>
+
 </layer-list>

@@ -26,7 +26,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
 
+        Thread.sleep(1500)
         setTheme(R.style.Theme_Pokedex)
+
         setContentView(binding.root)
 
         viewModel.pokemons.observe(this, Observer {
