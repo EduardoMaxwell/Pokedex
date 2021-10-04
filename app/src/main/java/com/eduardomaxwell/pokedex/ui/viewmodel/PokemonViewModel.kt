@@ -16,6 +16,7 @@ class PokemonViewModel : ViewModel() {
 
     private fun loadPokemons() {
         val pokemonsApiResults = PokemonRepository.listPokemons()
+
         pokemonsApiResults?.results?.let { pokemonsResults ->
 
             pokemons.postValue(pokemonsResults.map { pokemonResult ->
