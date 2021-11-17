@@ -11,7 +11,7 @@
         android:roundIcon="@mipmap/pokemon"
         android:supportsRtl="true"
         android:theme="@style/Theme.SplashScreen">
-        <activity android:name=".ui.PokemonDetailActivity"></activity>
+        <activity android:name=".ui.PokemonDetailActivity" />
         <activity android:name=".ui.SplashScreenActivity" />
         <activity
             android:name=".ui.MainActivity"

@@ -3,8 +3,10 @@ package com.eduardomaxwell.pokedex.ui
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.animation.AnimationUtils
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
+import com.eduardomaxwell.pokedex.R
 import com.eduardomaxwell.pokedex.databinding.PokemonItemBinding
 import com.eduardomaxwell.pokedex.domain.Pokemon
 
@@ -21,6 +23,8 @@ class PokemonAdapter(
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         holder.viewBind(items[position])
+        holder.itemView.animation =
+            AnimationUtils.loadAnimation(holder.itemView.context, R.anim.right_to_left_anim)
     }
 
     override fun getItemCount() = items.size
@@ -65,6 +69,7 @@ class PokemonAdapter(
                     onItemClickListener.invoke(pokemon)
                 }
             }
+
 
         }
     }
