@@ -9,7 +9,7 @@ android {
 
     defaultConfig {
         applicationId "com.eduardomaxwell.pokedex"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 31
         versionCode 1
         versionName "1.0"
@@ -55,6 +55,9 @@ dependencies {
     //Retrofit and Gson
     implementation "com.squareup.retrofit2:retrofit:${retrofit_version}"
     implementation "com.squareup.retrofit2:converter-gson:${retrofit_version}"
+
+    //TransformationLayout
+    implementation "com.github.skydoves:transformationlayout:1.0.9"
 
     testImplementation 'junit:junit:4.13.2'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
