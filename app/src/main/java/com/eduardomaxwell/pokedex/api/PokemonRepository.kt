@@ -16,7 +16,7 @@ object PokemonRepository {
 
     val service: PokemonService = initRetrofit().create(PokemonService::class.java)
 
-    fun listPokemons(limit: Int = 151): PokemonsAPIResult? {
+    fun listPokemons(limit: Int = 21): PokemonsAPIResult? {
         val call = service.getPokemons(limit)
 
         return call.execute().body()

@@ -8,13 +8,11 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eduardomaxwell.pokedex.R
 import com.eduardomaxwell.pokedex.databinding.ActivityMainBinding
-import com.eduardomaxwell.pokedex.databinding.ActivitySplashScreenBinding
 import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModel
 import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
-    private lateinit var bindingSplash: ActivitySplashScreenBinding
 
     private val viewModel by lazy {
         ViewModelProvider(this, PokemonViewModelFactory())
@@ -27,9 +25,13 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1500)
         setTheme(R.style.Theme_Pokedex)
-
         setContentView(binding.root)
 
+        setupRecycler()
+
+    }
+
+    private fun setupRecycler() {
         viewModel.pokemons.observe(this, Observer {
             it?.let { pokemons ->
 
@@ -38,6 +40,7 @@ class MainActivity : AppCompatActivity() {
                     layoutManager =
                         StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
                     adapter = PokemonAdapter(pokemons) { pokemon ->
+
                         val intent = PokemonDetailActivity.getStartIntent(
                             this@MainActivity,
                             pokemonName = pokemon.name,
@@ -50,6 +53,5 @@ class MainActivity : AppCompatActivity() {
             }
         })
     }
-
 
 }

@@ -5,6 +5,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.view.animation.AnimationUtils
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.res.ResourcesCompat
 import com.bumptech.glide.Glide
 import com.eduardomaxwell.pokedex.R
 import com.eduardomaxwell.pokedex.databinding.ActivityPokemonDetailBinding
@@ -16,11 +17,16 @@ class PokemonDetailActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityPokemonDetailBinding.inflate(layoutInflater)
 
-        setTheme(com.eduardomaxwell.pokedex.R.style.Theme_Pokedex)
+        setTheme(R.style.Theme_Pokedex)
         setContentView(binding.root)
         setupWindowTransitions()
 
-        binding.tvPokemonNameDetail.text = intent.getStringExtra(EXTRA_NAME)
+        binding.apply {
+            tvPokemonNameDetail.text = intent.getStringExtra(EXTRA_NAME)
+            tvPokemonNameDetail.typeface =
+                ResourcesCompat.getFont(applicationContext, R.font.vidaloka_regular)
+        }
+
 
         Glide.with(this)
             .load(intent.getStringExtra(EXTRA_URL))
