@@ -14,7 +14,7 @@ object PokemonRepository {
             .build()
     }
 
-    val service: PokemonService = initRetrofit().create(PokemonService::class.java)
+    private val service: PokemonService = initRetrofit().create(PokemonService::class.java)
 
     fun listPokemons(limit: Int = 21): PokemonsAPIResult? {
         val call = service.getPokemons(limit)

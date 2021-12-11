@@ -1,5 +1,6 @@
 package com.eduardomaxwell.pokedex.ui
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,9 +10,10 @@ import com.bumptech.glide.Glide
 import com.eduardomaxwell.pokedex.R
 import com.eduardomaxwell.pokedex.databinding.PokemonItemBinding
 import com.eduardomaxwell.pokedex.domain.Pokemon
+import com.eduardomaxwell.pokedex.utils.TypeColor
 
 class PokemonAdapter(
-    private val items: List<Pokemon?>,
+    private val pokemons: List<Pokemon?>,
     private val onItemClickListener: ((pokemon: Pokemon) -> Unit)
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
@@ -22,12 +24,14 @@ class PokemonAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.viewBind(items[position])
+        val pokemon = pokemons[position]
+        holder.viewBind(pokemon)
         holder.itemView.animation =
             AnimationUtils.loadAnimation(holder.itemView.context, R.anim.right_to_left_anim)
+
     }
 
-    override fun getItemCount() = items.size
+    override fun getItemCount() = pokemons.size
 
     class ViewHolder(
         itemView: PokemonItemBinding?,
@@ -35,21 +39,30 @@ class PokemonAdapter(
     ) : RecyclerView.ViewHolder(itemView!!.root) {
 
 
+        private val backgroundType = itemView?.pokemonBackgroundType
         private val image = itemView?.ivPokemon
         private val name = itemView?.tvName
         private val number = itemView?.tvNumber
         private val type = itemView?.tvType1
         private val type2 = itemView?.tvType2
 
+
+        @SuppressLint("SetTextI18n")
         fun viewBind(item: Pokemon?) {
 
             item?.let {
+
+                TypeColor.typeColor(itemView.context, item.types[0].name)?.let {
+                    backgroundType?.setBackgroundResource(it)
+                }
 
                 if (image != null) {
                     Glide.with(itemView.context)
                         .load(item.imageURl)
                         .centerCrop()
                         .into(image)
+
+
                 }
 
                 name?.text = item.name.capitalize()
@@ -62,6 +75,8 @@ class PokemonAdapter(
                     type2?.visibility = View.GONE
 
                 }
+
+
             }
 
             itemView.rootView.setOnClickListener {

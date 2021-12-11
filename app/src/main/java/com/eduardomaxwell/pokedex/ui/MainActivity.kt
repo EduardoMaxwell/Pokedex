@@ -3,7 +3,6 @@ package com.eduardomaxwell.pokedex.ui
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.eduardomaxwell.pokedex.R
@@ -13,6 +12,7 @@ import com.eduardomaxwell.pokedex.ui.viewmodel.PokemonViewModelFactory
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
+    private lateinit var pokemonPagingAdapter: PokemonPagingAdapter
 
     private val viewModel by lazy {
         ViewModelProvider(this, PokemonViewModelFactory())
@@ -25,14 +25,14 @@ class MainActivity : AppCompatActivity() {
 
         Thread.sleep(1500)
         setTheme(R.style.Theme_Pokedex)
+
         setContentView(binding.root)
-
+        pokemonPagingAdapter = PokemonPagingAdapter()
         setupRecycler()
-
     }
 
     private fun setupRecycler() {
-        viewModel.pokemons.observe(this, Observer {
+        viewModel.pokemons.observe(this, {
             it?.let { pokemons ->
 
                 with(binding.rvPorkemons) {

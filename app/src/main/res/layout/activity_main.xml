@@ -4,18 +4,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/bg_splash"
     tools:context=".ui.MainActivity">
 
     <TextView
         android:id="@+id/toolbarTitle"
         android:layout_width="0dp"
-        android:padding="8dp"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_height="wrap_content"
         android:textAlignment="center"
+        android:textSize="22sp"
+        android:textColor="@color/white"
+        android:padding="8dp"
         android:text="@string/toolbar_text"
-        android:textSize="30sp"
-        android:fontFamily="@font/vidaloka_regular"
+        android:fontFamily="@font/pokemon_solid"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
