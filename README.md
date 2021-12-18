@@ -15,7 +15,7 @@ Pokedex is a small demo application using MVVM architecture.<br>
   - MVVM Architecture (View - DataBinding - ViewModel - Model)
   - [Bindables](https://github.com/skydoves/bindables) - Android DataBinding kit for notifying data changes to UI layers.
 - [Retrofit](https://github.com/square/retrofit) - construct the REST APIs.
-- [Gson](https://github.com/square/moshi/) - Gson is a Java library that can be used to convert Java Objects into their JSON representation.
+- [Gson](https://github.com/google/gson) - Gson is a Java library that can be used to convert Java Objects into their JSON representation.
 - [Glide](https://github.com/google/gson) - loading images.
 
 ## Open API
