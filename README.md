@@ -6,7 +6,7 @@ Pokedex is a small demo application using MVVM architecture.<br>
 
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
-- [Kotlin](https://kotlinlang.org/) based, [Coroutines](https://github.com/Kotlin/kotlinx.coroutines) + [Flow](https://kotlin.github.io/kotlinx.coroutines/kotlinx-coroutines-core/kotlinx.coroutines.flow/) for asynchronous.
+- [Kotlin](https://kotlinlang.org/) based.
 - JetPack
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
