@@ -36,9 +36,9 @@ class PokemonDetailActivity : AppCompatActivity() {
     }
 
     private fun setupWindowTransitions() {
-        val ttb = AnimationUtils.loadAnimation(this, R.anim.imagescale)
+//        val ttb = AnimationUtils.loadAnimation(this, R.anim.imagescale)
         val btt = AnimationUtils.loadAnimation(this, R.anim.bottomtotop)
-        binding.ivPokemonImageDetail.startAnimation(ttb)
+//        binding.ivPokemonImageDetail.startAnimation(ttb)
         binding.tvPokemonNameDetail.startAnimation(btt)
     }
 

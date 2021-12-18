@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.animation.AnimationUtils
+import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.eduardomaxwell.pokedex.R
@@ -14,7 +15,7 @@ import com.eduardomaxwell.pokedex.utils.TypeColor
 
 class PokemonAdapter(
     private val pokemons: List<Pokemon?>,
-    private val onItemClickListener: ((pokemon: Pokemon) -> Unit)
+    private val onItemClickListener: ((pokemon: Pokemon, imageView: View) -> Unit)
 ) : RecyclerView.Adapter<PokemonAdapter.ViewHolder>() {
 
 
@@ -35,7 +36,7 @@ class PokemonAdapter(
 
     class ViewHolder(
         itemView: PokemonItemBinding?,
-        private val onItemClickListener: ((pokemon: Pokemon) -> Unit)
+        private val onItemClickListener: ((pokemon: Pokemon, view: View) -> Unit)
     ) : RecyclerView.ViewHolder(itemView!!.root) {
 
 
@@ -81,7 +82,7 @@ class PokemonAdapter(
 
             itemView.rootView.setOnClickListener {
                 item?.let { pokemon ->
-                    onItemClickListener.invoke(pokemon)
+                    onItemClickListener.invoke(pokemon, image as ImageView)
                 }
             }
 
