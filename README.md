@@ -4,6 +4,9 @@
 Pokedex is a small demo application using MVVM architecture.<br>
 </p>
 
+<img src="/pokemon-preview.gif" align="right" width="32%"/>
+
+
 ## Tech stack & Open-source libraries
 - Minimum SDK level 21
 - [Kotlin](https://kotlinlang.org/) based.
