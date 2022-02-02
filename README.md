@@ -14,7 +14,7 @@ Pokedex is a small demo application using MVVM architecture.<br>
   - Lifecycle - dispose of observing data when lifecycle state changes.
   - ViewModel - UI related data holder, lifecycle aware.
 - Architecture
-  - MVVM Architecture (View - DataBinding - ViewModel - Model)
+  - MVVM Architecture
 - [Retrofit](https://github.com/square/retrofit) - construct the REST APIs.
 - [Gson](https://github.com/google/gson) - Gson is a Java library that can be used to convert Java Objects into their JSON representation.
 - [Glide](https://github.com/google/gson) - loading images.
